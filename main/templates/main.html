@@ -1,6 +1,72 @@
-<h1>Dvntory Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DVNTORY</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #1C3879;
+      color: white;
+      text-align: center;
+      padding: 1em;
+    }
+    .container {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed ;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #1C3879;
+      color: white;
+    }
+    td {
+      background-color: #EAE3D2;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DVNTORY</h1>
+    <p>Devin Faiz Faturahman - 2206830593 - PBP E</p>
+  </header>
 
-<h5>Name: </h5>
-<p>{{ name }}<p>
-<h5>Class: </h5>
-<p>{{ class }}<p>
+  <div class="container">
+    <h2>Daftar Produk</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+
+      {% for item in item_inventory %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.amount }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</body>
+</html>
