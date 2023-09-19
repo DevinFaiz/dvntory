@@ -1,39 +1,45 @@
+from django.http import HttpResponse
+from django.core import serializers
+from django.http import HttpResponseRedirect
+from main.forms import ProductForm
+from main.models import Item
+from django.urls import reverse
 from django.shortcuts import render
 
 def show_main(request):
+    items = Item.objects.all()
+
     context = {
-        'item_inventory' : [
-            {
-                'name': 'Gitar Akustik',
-                'amount': '5',
-                'description': 'Alat musik berdawai yang umumnya digunakan untuk memainkan berbagai genre musik, termasuk akustik, pop, dan folk.',
-                'price': '1000000'  
-            },
-            {
-                'name': 'Drum Set',
-                'amount': '3',
-                'description': 'Set perkusi yang terdiri dari berbagai jenis drum, seperti snare drum, tom-tom, dan bass drum, serta simbal dan hardware pendukung.',
-                'price': '5000000'  
-            },
-            {
-                'name': 'Piano Digital',
-                'amount': '2',
-                'description': 'Alat musik yang memiliki tuts dan suara yang mirip dengan piano akustik, tetapi dalam bentuk digital yang lebih ringkas.',
-                'price': '1000000'  
-            },
-            {
-                'name': 'Saxophone',
-                'amount': '6',
-                'description': 'Alat musik tiup logam dengan berbagai jenis, seperti alto, tenor, dan soprano. Biasanya digunakan dalam jazz dan musik klasik.',
-                'price': '4000000'  
-            },
-            {
-                'name': 'Biola',
-                'amount': '8',
-                'description': 'Instrumen dawai yang dimainkan dengan menggunakan busur. Biasanya digunakan dalam musik klasik.',
-                'price': '1000000'  
-            },
-        ],
+        'creator': 'Devin Faiz Faturahman',
+        'npm': '2206830593',
+        'class': 'PBP E',
+        'items': items,
     }
 
     return render(request, "main.html", context)
+
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+
+def show_xml(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")

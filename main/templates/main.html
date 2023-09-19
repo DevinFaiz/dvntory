@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,12 +42,20 @@
       background-color: #EAE3D2;
       color: black;
     }
+    .button-container {
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 10px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>DVNTORY</h1>
-    <p>Devin Faiz Faturahman - 2206830593 - PBP E</p>
+    <p>{{ creator }} - {{ npm }} - {{ class }}</p>
   </header>
 
   <div class="container">
@@ -57,7 +68,7 @@
         <th>Price</th>
       </tr>
 
-      {% for item in item_inventory %}
+      {% for item in items %}
       <tr>
         <td>{{ item.name }}</td>
         <td>{{ item.amount }}</td>
@@ -68,5 +79,16 @@
     </table>
   </div>
 
+  <br />
+
+  <div class="button-container">
+    <a href="{% url 'main:create_product' %}">
+      <button>
+          Add New Product
+      </button>
+  </a>
+  </div>
 </body>
 </html>
+
+{% endblock content %}
