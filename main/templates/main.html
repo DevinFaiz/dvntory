@@ -70,20 +70,23 @@
 
     <div class="container">
         <h2>Daftar Produk</h2>
+        <div>
+            <p>Kamu menyimpan {{ items|length }} item pada aplikasi ini</p>
+        </div>
         <table>
             <tr>
                 <th>Name</th>
+                <th>Price</th>
                 <th>Amount</th>
                 <th>Description</th>
-                <th>Price</th>
             </tr>
 
             {% for item in items %}
             <tr>
                 <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
                 <td>{{ item.amount }}</td>
                 <td>{{ item.description }}</td>
-                <td>{{ item.price }}</td>
             </tr>
             {% endfor %}
         </table>
