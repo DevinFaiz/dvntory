@@ -382,17 +382,17 @@ JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena be
 4. JSON memungkinkan pengguna untuk meminta data dari berbagai domain menggunakan metode 'JSON padding' (JSONP), yang mengatasi batasan same-origin policy.
 
 ## Screenshot hasil akses URL pada Postman
-# HTML
-![HTML](image/postman-html.jpg)
+### HTML
+![HTML](image/postman-html.png)
 
-# XML
+### XML
 ![XML](image/postman-xml.png)
 
-# JSON
+### JSON
 ![JSON](image/postman-json.png)
 
-# XML by ID
+### XML by ID
 ![XML by ID](image/postman-xmlid.png)
 
-# JSON by ID
+### JSON by ID
 ![JSON by ID](image/postman-jsonid.png)
