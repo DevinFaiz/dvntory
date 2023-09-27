@@ -71,6 +71,9 @@
     <div class="container">
         <h2>Daftar Produk</h2>
         <div>
+            <p>Halo, {{ name }}! Selamat datang!</p>
+        </div>
+        <div>
             <p>Kamu menyimpan {{ items|length }} item pada aplikasi ini</p>
         </div>
         <table>
@@ -90,6 +93,9 @@
             </tr>
             {% endfor %}
         </table>
+        <div>
+            <h5>Sesi terakhir login: {{ last_login }}</h5>
+        </div>
     </div>
 
     <br />
@@ -101,6 +107,17 @@
             </button>
         </a>
     </div>
+
+    <br />
+
+    <div class="button-container">
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+    </div>
+
 </body>
 </html>
 
