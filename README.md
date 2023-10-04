@@ -976,9 +976,8 @@ hasil styling **Register feature** aplikasi **DVNTORY**
 
 {% endblock %}
 ```
-
-hasil styling **Main menu** aplikasi **DVNTORY**
-![Main menu](image/main.png)
+hasil styling **Add new product feature** aplikasi **DVNTORY**
+![Add new product feature](image/addproduct.png)
 
 ### Contoh pada `main.html`.
 ```html
@@ -1164,8 +1163,8 @@ hasil styling **Main menu** aplikasi **DVNTORY**
 {% endblock content %}
 ```
 
-hasil styling **Add new product feature** aplikasi **DVNTORY**
-![Add new product feature](image/addproduct.png)
+hasil styling **Main menu** aplikasi **DVNTORY**
+![Main menu](image/main.png)
 
 ## Manfaat Element Selector dan Waktu yang Tepat untuk Menggunakannya
 Element selector dalam CSS digunakan untuk menargetkan elemen HTML di halaman web yang ingin diberi style. Berikut ini beberapa jenis selector dan manfaatnya:
@@ -1187,8 +1186,6 @@ Waktu yang tepat untuk menggunakan selector tertentu tergantung pada kebutuhan A
 ## HTML5 Tag
 HTML5 adalah versi terbaru dari HTML yang mendefinisikan struktur web. Beberapa tag baru yang diperkenalkan dalam HTML5 meliputi:
 
-#### `<article>`: 
-Digunakan untuk menandai konten independen yang dapat digunakan secara terpisah dari konten lainnya.
 #### `<footer>`: 
 Digunakan untuk menandai bagian bawah halaman web atau bagian.
 #### `<header>`: 
