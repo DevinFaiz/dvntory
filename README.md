@@ -712,3 +712,508 @@ Untuk mengurangi risiko potensial ini, harus dilakukan:
 - Menggunakan fitur-fitur keamanan seperti HttpOnly dan Secure flags untuk cookies
 - Mengenkripsi data yang disimpan di dalam cookies
 - Memastikan bahwa aplikasi mematuhi dan memenuhi peraturan privasi seperti GDPR (General Data Protection Regulation) dan meminta persetujuan pengguna sebelum menggunakan cookies
+
+# Tugas 5
+## Implementasi CSS dalam aplikasi
+Dalam proyek **DVNTORY** ini, saya memanfaatkan internal CSS untuk mempermudah proses styling pada beberapa fitur. Cara sederhana yang saya terapkan adalah dengan membuat selector untuk mengelompokkan mana saja yang akan di styling dengan model yang sama, apakah ingin keseluruhan diubah atau hanya beberapa bagian saja. Jika sudah, kita mulai styling untuk selectornya dengan menambahkan block `<style>` di dalamnya. 
+### Contoh pada `login.html`.
+``` html
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1C3879;
+        }
+
+        .login {
+            background-color: #1C3879;
+            padding: 1em;
+            color: white;
+        }
+
+        .container {
+            width: 40%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #EAE3D2;
+            border-radius: 10px;
+            color: black;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #fff;
+            width: 150px;
+            margin: 20px 0px 0px 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class = "login">
+        <h1>Login</h1>
+    
+        <div class="container">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>Username: </td>
+                        <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                            
+                    <tr>
+                        <td>Password: </td>
+                        <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
+    
+                    <tr>
+                        <td></td>
+                        <td><input class="btn login_btn" type="submit" value="Login"></td>
+                    </tr>
+                </table>
+            </form>
+    
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            <br />
+                
+            Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+        </div>
+    </div>
+</body>
+
+{% endblock content %}
+```
+
+hasil styling **Login feature** aplikasi **DVNTORY**
+![Login feature](image/login.png)
+
+### Contoh pada `register.html`.
+``` html
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+{% endblock meta %}
+
+{% block content %}   
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1C3879;
+        }
+
+        .login {
+            background-color: #1C3879;
+            padding: 1em;
+            color: white;
+        }
+
+        .container {
+            width: 60%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #EAE3D2;
+            border-radius: 10px;
+            color: black;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #fff;
+            width: 150px;
+            margin: 20px 0px 0px 160px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class = "login">
+        <h1>Register</h1>  
+    
+        <div class="container">
+            <form method="POST" >  
+                {% csrf_token %}  
+                <table>  
+                    {{ form.as_table }}  
+                    <tr>  
+                        <td></td>
+                        <td><input type="submit" name="submit" value="Daftar"/></td>  
+                    </tr>  
+                </table>  
+            </form>
+    
+            {% if messages %}  
+                <ul>   
+                    {% for message in messages %}  
+                        <li>{{ message }}</li>  
+                        {% endfor %}  
+                </ul>   
+            {% endif %}
+        </div>
+    </div> 
+</body>
+
+{% endblock content %}
+```
+
+hasil styling **Register feature** aplikasi **DVNTORY**
+![Register feature](image/register.png)
+
+### Contoh pada `create_product.html`.
+```html
+{% extends 'base.html' %} 
+
+{% block content %}
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background-color: #1C3879;
+        }
+
+        header {
+            background-color: #1C3879;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .container {
+            width: 40%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #EAE3D2;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #fff;
+            width: 150px;
+            margin: 20px 0px 0px 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Add New Product</h1>
+    </header>
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add Product"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+{% endblock %}
+```
+
+hasil styling **Main menu** aplikasi **DVNTORY**
+![Main menu](image/main.png)
+
+### Contoh pada `main.html`.
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DVNTORY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed ;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1C3879;
+            color: white;
+        }
+
+        tr {
+            background-color: #EAE3D2;
+            color: black;
+
+        }
+
+        tr:last-child {
+            background-color: #1C3879;
+            color: white;
+
+        }
+
+        .button-container {
+            margin-top: 10px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #EAE3D2;
+            display: inline-block; 
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: #1C3879;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .navbar {
+            background-color: #1C3879;
+            color: white;
+        }
+
+        .navbar .nav-link{
+            color: white;
+        }
+
+        .navbar .navbar-brand {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">DVNTORY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'main:create_product' %}">Add New Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+                </li>
+            </ul>
+            
+        </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Daftar Produk</h2>
+        <div>
+            <p>Halo, {{ name }}! Selamat datang!</p>
+        </div>
+        <div>
+            <p>Kamu menyimpan {{ items|length }} item pada aplikasi ini</p>
+        </div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Edit</th>
+            </tr>
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.amount }}</td>
+                <td>
+                    <div class="button-container">
+                        <a href="{% url 'main:edit_product' item.pk %}">
+                            <button>
+                                Edit
+                            </button>
+                        </a>
+                        <a href="{% url 'main:delete_product' item.pk %}">
+                              <button>
+                                  Delete
+                              </button>
+                          </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        </br>
+
+        <div class="button-container">
+            <a href="{% url 'main:create_product' %}">
+                <button>
+                    Add New Product
+                </button>
+            </a>
+            <a href="{% url 'main:logout' %}">
+                <button>
+                    Logout
+                </button>
+            </a>
+        </div>
+
+        </br>
+
+        <div>
+            <h7>Sesi terakhir login: {{ last_login }}</h7>
+        </div>
+    </div> 
+
+    <footer>
+        <h3>DVNTORY</h3>
+        <p>Credit : {{ creator }} - {{ npm }} - {{ class }}</p>
+    </footer>
+
+</body>
+</html>
+
+{% endblock content %}
+```
+
+hasil styling **Add new product feature** aplikasi **DVNTORY**
+![Add new product feature](image/addproduct.png)
+
+## Manfaat Element Selector dan Waktu yang Tepat untuk Menggunakannya
+Element selector dalam CSS digunakan untuk menargetkan elemen HTML di halaman web yang ingin diberi style. Berikut ini beberapa jenis selector dan manfaatnya:
+
+#### Universal Selector (*):
+Selector ini digunakan untuk memilih semua elemen yang ada pada suatu halaman HTML. Biasanya digunakan untuk mengatur style dasar yang berlaku untuk semua elemen, seperti mengatur margin dan padding menjadi 0.
+
+#### Element Type Selector: 
+Selector ini cocok dengan satu atau lebih elemen HTML dengan nama yang sama. Misalnya, selector p akan cocok dengan semua elemen HTML `<p>`. Ini berguna untuk mengatur style yang sama pada elemen dengan tipe yang sama.
+
+#### Class Selector (.): 
+Selector ini digunakan untuk mengatur style pada elemen yang memiliki atribut class tertentu. Ini memungkinkan Anda untuk mengatur style yang berbeda pada elemen yang memiliki class yang sama.
+
+#### ID Selector (#): 
+Selector ini digunakan untuk mengatur style pada elemen yang memiliki atribut id tertentu. ID selector berguna untuk mengatur style pada elemen yang unik dalam halaman web.
+
+Waktu yang tepat untuk menggunakan selector tertentu tergantung pada kebutuhan Anda dalam mengatur style pada elemen HTML. Misalnya, jika Anda ingin mengatur style yang sama pada semua elemen dengan tipe yang sama, Anda dapat menggunakan element type selector. Jika Anda ingin mengatur style pada elemen yang unik, Anda dapat menggunakan ID selector.
+
+## HTML5 Tag
+HTML5 adalah versi terbaru dari HTML yang mendefinisikan struktur web. Beberapa tag baru yang diperkenalkan dalam HTML5 meliputi:
+
+#### `<article>`: 
+Digunakan untuk menandai konten independen yang dapat digunakan secara terpisah dari konten lainnya.
+#### `<footer>`: 
+Digunakan untuk menandai bagian bawah halaman web atau bagian.
+#### `<header>`: 
+Digunakan untuk menandai bagian atas halaman web atau bagian.
+#### `<main>`: 
+Digunakan untuk menandai konten utama dalam halaman web. Konten dalam elemen <main> harus unik dan langsung terkait dengan topik utama dokumen.
+#### `<nav>`: 
+Digunakan untuk menandai bagian navigasi dalam halaman web, seperti menu atau daftar tautan.
+#### `<section>`: 
+Digunakan untuk mengelompokkan konten terkait dalam suatu bagian.
+
+## Perbedaan antara Margin dan Padding
+Margin dan padding adalah dua properti dalam CSS yang digunakan untuk mengatur jarak antara elemen. Berikut perbedaan antara keduanya:
+
+- **Margin**: Merupakan jarak di luar elemen, antara elemen tersebut dan elemen lain di sekitarnya. Margin digunakan untuk mengatur jarak antara elemen dengan elemen lain di luar batas elemen tersebut.
+
+- **Padding**: Merupakan jarak di dalam elemen, antara batas elemen dan kontennya. Padding digunakan untuk mengatur jarak antara konten elemen dengan batas elemen tersebut.
+
+## Perbedaan antara Framework CSS Tailwind dan Bootstrap
+Tailwind dan Bootstrap adalah dua framework CSS yang populer dan digunakan untuk membangun tampilan halaman web. Berikut perbedaan antara keduanya:
+
+- **Tailwind**: Merupakan framework CSS yang fokus pada utilitas. Tailwind menyediakan kelas utilitas yang dapat digabungkan untuk membuat tampilan yang diinginkan. Tailwind lebih fleksibel dan memungkinkan Anda untuk membuat desain yang unik, tetapi memerlukan waktu lebih lama untuk menguasai dan mungkin lebih sulit untuk digunakan oleh pemula.
+
+- **Bootstrap**: Merupakan framework CSS yang fokus pada komponen. Bootstrap menyediakan komponen yang telah dirancang sebelumnya, seperti tombol, kartu, dan navigasi, yang dapat dengan mudah digunakan dan disesuaikan. Bootstrap lebih mudah digunakan dan lebih cepat untuk membangun tampilan, tetapi mungkin menghasilkan desain yang kurang unik dan lebih mirip dengan situs web lain yang menggunakan Bootstrap.
+
+### Kapan sebaiknya menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+- Gunakan **Bootstrap** jika Anda ingin membangun tampilan halaman web dengan cepat, lebih mudah digunakan oleh pemula, dan tidak memerlukan desain yang sangat unik.
+- Gunakan **Tailwind** jika Anda ingin lebih fleksibel dalam mendesain tampilan halaman web, menghasilkan desain yang unik, dan tidak keberatan untuk menghabiskan waktu lebih lama untuk menguasai dan menggabungkan kelas utilitas.
