@@ -2,7 +2,7 @@
 
 Devin Faiz Faturahman 2206830593 PBP E
 
-Tautan untuk mengakses web di adaptable, [klik tautan ini](https://dvntory.adaptable.app)
+Tautan untuk mengakses web, [klik tautan ini](https://devin-faiz-tugas.pbp.cs.ui.ac.id/)
 
 # Tugas 2
 ## Membuat sebuah proyek Django baru
